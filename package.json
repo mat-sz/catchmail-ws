@@ -11,7 +11,7 @@
     "husky": "^4.2.3",
     "letterparser": "^0.0.2",
     "lint-staged": "^10.0.9",
-    "micromta": "^1.0.0",
+    "micromta": "^1.0.1",
     "prettier": "^2.0.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3",

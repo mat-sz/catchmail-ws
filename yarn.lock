@@ -824,10 +824,10 @@ micromatch@^4.0.2:
     braces "^3.0.1"
     picomatch "^2.0.5"
 
-micromta@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/micromta/-/micromta-1.0.0.tgz#d2281a152dcacb0dc0909f1ef5b4ae5ab543265e"
-  integrity sha512-qw55v1ByRKFzB4Yqb+dXyO+UyDExd9wZpy43JPpEiawee7m24Zmt7fVKAl93bCNuPB0cZbR8KslYSvW/AZKobw==
+micromta@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/micromta/-/micromta-1.0.1.tgz#9e87b910d441378d45153a832a7f336af4020f6e"
+  integrity sha512-vhUbcjkl0plt5jP5zpDd8FLh/uKjv6xymkdrQ7bXYDLCDr78vobHgW/D6VBN+vQyFB+YyVkQedLhaZq36arb/g==
 
 mimic-fn@^1.0.0:
   version "1.2.0"
