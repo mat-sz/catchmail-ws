@@ -29,4 +29,5 @@ export interface MailMessageModel extends MessageModel {
   date?: Date;
   html?: string;
   text?: string;
+  raw?: string;
 }

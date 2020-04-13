@@ -23,6 +23,7 @@ mta.on('message', async message => {
   clientManager.broadcast({
     type: MessageType.MAIL,
     ...mail,
+    raw: message.message,
   } as MailMessageModel);
 });
 
