@@ -36,6 +36,7 @@ export class ClientManager {
         JSON.stringify({
           type: MessageType.AUTHENTICATION_RESPONSE,
           success,
+          authenticationMode: this.authenticationMode,
         } as AuthenticationResponseMessageModel)
       );
     }
