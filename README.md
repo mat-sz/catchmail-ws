@@ -6,7 +6,7 @@ More details about the project are available in the [catchmail-web](https://gith
 
 ## Installation
 
-Run `yarn install`, `yarn build` and then simply run `yarn start`. For development you can also run filedrop-ws with live reload, `yarn dev`.
+Run `yarn install`, `yarn build` and then simply run `yarn start`. For development you can also run catchmail-ws with live reload, `yarn dev`. A permission to use port 25 is required (running as superuser is not recommended though, an alternative is to use Docker or authbind/setcap).
 
 ## Configuration
 
