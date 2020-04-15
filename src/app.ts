@@ -51,13 +51,6 @@ wss.on('connection', (ws, req) => {
   const client = new WSClient(ws, req);
   clientManager.addClient(client);
 
-  ws.send(
-    JSON.stringify({
-      type: 'welcome',
-      clientId: client.clientId,
-    })
-  );
-
   ws.on('message', (data: string) => {
     // Prevents DDoS and abuse.
     if (!data || data.length > 1024) return;
