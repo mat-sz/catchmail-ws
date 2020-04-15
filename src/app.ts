@@ -11,11 +11,24 @@ import { ErrorMessageModel, MailMessageModel } from './types/Models';
 // Configuration
 const host = process.env.WS_HOST || '127.0.0.1';
 const port = parseInt(process.env.WS_PORT) || 5000;
+const authenticationMode = process.env.AUTH_MODE || 'none';
+const authenticationSecret = process.env.AUTH_SECRET;
 
 const wss = new WebSocket.Server({ host: host, port: port });
 const mta = new microMTA();
 
 const clientManager = new ClientManager();
+clientManager.authenticationMode = authenticationMode;
+clientManager.authenticate = request => {
+  switch (authenticationMode) {
+    case 'none':
+      return true;
+    case 'secret':
+      return request.secret === authenticationSecret;
+    default:
+      return false;
+  }
+};
 
 mta.on('message', async message => {
   const mail = extract(message.message);

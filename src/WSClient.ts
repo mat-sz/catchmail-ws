@@ -13,6 +13,7 @@ export class WSClient implements Client {
   readonly firstSeen = new Date();
   lastSeen = new Date();
   readonly remoteAddress: string;
+  authenticated = false;
 
   constructor(private ws: WebSocket, req: IncomingMessage) {
     const address =

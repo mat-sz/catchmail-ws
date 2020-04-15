@@ -1,28 +1,52 @@
 import { Client } from './types/Client';
-import { MessageModel } from './types/Models';
+import {
+  MessageModel,
+  AuthenticationRequestMessageModel,
+  AuthenticationResponseMessageModel,
+  WelcomeMessageModel,
+} from './types/Models';
+import { MessageType } from './types/MessageType';
 
 export class ClientManager {
   private clients: Client[] = [];
+  authenticate: (request: AuthenticationRequestMessageModel) => boolean;
+  authenticationMode: string = 'none';
 
   addClient(client: Client) {
     this.clients.push(client);
 
     client.send(
       JSON.stringify({
-        type: 'welcome',
+        type: MessageType.WELCOME,
         clientId: client.clientId,
-      })
+        authenticationMode: this.authenticationMode,
+      } as WelcomeMessageModel)
     );
   }
 
   handleMessage(client: Client, message: MessageModel) {
     client.lastSeen = new Date();
+
+    if (message.type === MessageType.AUTHENTICATION_REQUEST) {
+      const success = this.authenticate(
+        message as AuthenticationRequestMessageModel
+      );
+      client.authenticated = success;
+      client.send(
+        JSON.stringify({
+          type: MessageType.AUTHENTICATION_RESPONSE,
+          success,
+        } as AuthenticationResponseMessageModel)
+      );
+    }
   }
 
   broadcast(message: MessageModel) {
     const networkMessage = JSON.stringify(message);
 
     this.clients.forEach(client => {
+      if (!client.authenticated) return;
+
       try {
         client.send(networkMessage);
       } catch {}
@@ -31,7 +55,7 @@ export class ClientManager {
 
   pingClients() {
     const pingMessage = JSON.stringify({
-      type: 'ping',
+      type: MessageType.PING,
       timestamp: new Date().getTime(),
     });
 

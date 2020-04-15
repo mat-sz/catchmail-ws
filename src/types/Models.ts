@@ -12,6 +12,7 @@ export interface MessageModel {
 export interface WelcomeMessageModel extends MessageModel {
   type: MessageType.WELCOME;
   clientId: string;
+  authenticationMode: string;
 }
 
 export interface ErrorMessageModel extends MessageModel {
@@ -30,4 +31,14 @@ export interface MailMessageModel extends MessageModel {
   html?: string;
   text?: string;
   raw?: string;
+}
+
+export interface AuthenticationRequestMessageModel extends MessageModel {
+  type: MessageType.AUTHENTICATION_REQUEST;
+  secret?: string;
+}
+
+export interface AuthenticationResponseMessageModel extends MessageModel {
+  type: MessageType.AUTHENTICATION_RESPONSE;
+  success: boolean;
 }

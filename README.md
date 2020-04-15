@@ -14,8 +14,9 @@ Run `yarn install`, `yarn build` and then simply run `yarn start`. For developme
 
 The following variables are used for the configuration:
 
-| Variable          | Default value | Description                                                                       |
-| ----------------- | ------------- | --------------------------------------------------------------------------------- |
-| `WS_HOST`         | `127.0.0.1`   | IP address to bind to.                                                            |
-| `WS_PORT`         | `5000`        | Port to bind to.                                                                  |
-| `WS_BEHIND_PROXY` | `no`          | Set to `yes` if you want the application to respect the `X-Forwarded-For` header. |
+| Variable      | Default value | Description                                                           |
+| ------------- | ------------- | --------------------------------------------------------------------- |
+| `WS_HOST`     | `127.0.0.1`   | IP address to bind to.                                                |
+| `WS_PORT`     | `5000`        | Port to bind to.                                                      |
+| `AUTH_MODE`   | `none`        | Set to `secret` if you'd like to protect your instance with a secret. |
+| `AUTH_SECRET` | undefined     | Authentication secret for `AUTH_MODE=secret`.                         |

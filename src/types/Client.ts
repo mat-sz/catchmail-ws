@@ -4,6 +4,7 @@ export interface Client {
   lastSeen: Date;
   readonly remoteAddress: string;
   readonly readyState: number;
+  authenticated: boolean;
 
   send(data: string): void;
   close(): void;
