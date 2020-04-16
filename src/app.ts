@@ -1,4 +1,5 @@
 import WebSocket from 'ws';
+import { writeFile } from 'fs';
 import { microMTA } from 'micromta';
 import { extract } from 'letterparser';
 
@@ -13,6 +14,7 @@ const host = process.env.WS_HOST || '127.0.0.1';
 const port = parseInt(process.env.WS_PORT) || 5000;
 const authenticationMode = process.env.AUTH_MODE || 'none';
 const authenticationSecret = process.env.AUTH_SECRET;
+const logMode = process.env.LOG_MODE || 'none';
 
 const wss = new WebSocket.Server({ host: host, port: port });
 const mta = new microMTA();
@@ -31,6 +33,14 @@ clientManager.authenticate = request => {
 };
 
 mta.on('message', async message => {
+  if (logMode === 'file') {
+    writeFile(
+      './log/' + new Date().getTime() + '.eml',
+      message.message.replace(/\r/g, ''),
+      () => {}
+    );
+  }
+
   const mail = extract(message.message);
 
   clientManager.broadcast({

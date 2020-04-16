@@ -20,3 +20,4 @@ The following variables are used for the configuration:
 | `WS_PORT`     | `5000`        | Port to bind to.                                                      |
 | `AUTH_MODE`   | `none`        | Set to `secret` if you'd like to protect your instance with a secret. |
 | `AUTH_SECRET` | undefined     | Authentication secret for `AUTH_MODE=secret`.                         |
+| `LOG_MODE`    | `none`        | Set to `file` if you'd like to save all incoming messages.            |
