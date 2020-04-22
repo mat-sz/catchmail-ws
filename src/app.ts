@@ -1,7 +1,6 @@
 import WebSocket from 'ws';
 import { writeFile } from 'fs';
 import { microMTA } from 'micromta';
-import { extract } from 'letterparser';
 
 import { WSClient } from './WSClient';
 import { ClientManager } from './ClientManager';
@@ -41,11 +40,8 @@ mta.on('message', async message => {
     );
   }
 
-  const mail = extract(message.message);
-
   clientManager.broadcast({
     type: MessageType.MAIL,
-    ...mail,
     raw: message.message,
   } as MailMessageModel);
 });

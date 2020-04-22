@@ -22,14 +22,6 @@ export interface ErrorMessageModel extends MessageModel {
 
 export interface MailMessageModel extends MessageModel {
   type: MessageType.MAIL;
-  subject?: string;
-  from?: string;
-  to?: string[];
-  cc?: string[];
-  bcc?: string[];
-  date?: Date;
-  html?: string;
-  text?: string;
   raw?: string;
 }
 
