@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/mailparser": "^2.7.0",
     "@types/node": "^12.12.31",
     "@types/uuid": "^7.0.2",
     "@types/ws": "^7.2.3",
