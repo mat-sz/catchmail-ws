@@ -4,13 +4,16 @@ import {
   AuthenticationRequestMessageModel,
   AuthenticationResponseMessageModel,
   WelcomeMessageModel,
+  MailMessageModel,
 } from './types/Models';
 import { MessageType } from './types/MessageType';
 
 export class ClientManager {
   private clients: Client[] = [];
+  private cache: string[] = [];
   authenticate: (request: AuthenticationRequestMessageModel) => boolean;
   authenticationMode: string = 'none';
+  cacheSize: number = 0;
 
   addClient(client: Client) {
     this.clients.push(client);
@@ -39,6 +42,23 @@ export class ClientManager {
           authenticationMode: this.authenticationMode,
         } as AuthenticationResponseMessageModel)
       );
+    }
+  }
+
+  addMail(raw: string) {
+    this.broadcast({
+      type: MessageType.MAIL,
+      raw,
+    } as MailMessageModel);
+
+    if (this.cacheSize <= 0) {
+      return;
+    }
+
+    this.cache.push(raw);
+
+    if (this.cache.length > this.cacheSize) {
+      this.cache.shift();
     }
   }
 

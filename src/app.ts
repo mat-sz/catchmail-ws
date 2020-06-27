@@ -13,12 +13,14 @@ const host = process.env.WS_HOST || '127.0.0.1';
 const port = parseInt(process.env.WS_PORT) || 5000;
 const authenticationMode = process.env.AUTH_MODE || 'none';
 const authenticationSecret = process.env.AUTH_SECRET;
+const cacheSize = parseInt(process.env.CACHE_SIZE) || 0;
 const logMode = process.env.LOG_MODE || 'none';
 
 const wss = new WebSocket.Server({ host: host, port: port });
 const mta = new microMTA();
 
 const clientManager = new ClientManager();
+clientManager.cacheSize = cacheSize;
 clientManager.authenticationMode = authenticationMode;
 clientManager.authenticate = request => {
   switch (authenticationMode) {
@@ -40,10 +42,7 @@ mta.on('message', async message => {
     );
   }
 
-  clientManager.broadcast({
-    type: MessageType.MAIL,
-    raw: message.message,
-  } as MailMessageModel);
+  clientManager.addMail(message.message);
 });
 
 mta.on('error', error => {

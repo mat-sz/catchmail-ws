@@ -14,10 +14,11 @@ Run `yarn install`, `yarn build` and then simply run `yarn start`. For developme
 
 The following variables are used for the configuration:
 
-| Variable      | Default value | Description                                                           |
-| ------------- | ------------- | --------------------------------------------------------------------- |
-| `WS_HOST`     | `127.0.0.1`   | IP address to bind to (WebSockets).                                   |
-| `WS_PORT`     | `5000`        | Port to bind to (WebSockets).                                         |
-| `AUTH_MODE`   | `none`        | Set to `secret` if you'd like to protect your instance with a secret. |
-| `AUTH_SECRET` | undefined     | Authentication secret for `AUTH_MODE=secret`.                         |
-| `LOG_MODE`    | `none`        | Set to `file` if you'd like to save all incoming messages.            |
+| Variable      | Default value | Description                                                                      |
+| ------------- | ------------- | -------------------------------------------------------------------------------- |
+| `WS_HOST`     | `127.0.0.1`   | IP address to bind to (WebSockets).                                              |
+| `WS_PORT`     | `5000`        | Port to bind to (WebSockets).                                                    |
+| `AUTH_MODE`   | `none`        | Set to `secret` if you'd like to protect your instance with a secret.            |
+| `AUTH_SECRET` | undefined     | Authentication secret for `AUTH_MODE=secret`.                                    |
+| `LOG_MODE`    | `none`        | Set to `file` if you'd like to save all incoming messages.                       |
+| `CACHE_SIZE`  | `0`           | Set to any number above 0 to allow message caching and replaying to new clients. |
