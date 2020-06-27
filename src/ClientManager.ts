@@ -42,6 +42,17 @@ export class ClientManager {
           authenticationMode: this.authenticationMode,
         } as AuthenticationResponseMessageModel)
       );
+
+      if (client.authenticated && this.cache.length > 0) {
+        for (let raw of this.cache) {
+          client.send(
+            JSON.stringify({
+              type: MessageType.MAIL,
+              raw,
+            } as MailMessageModel)
+          );
+        }
+      }
     }
   }
 
