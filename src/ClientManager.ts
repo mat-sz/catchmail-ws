@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import { Client } from './types/Client';
 import {
   MessageModel,
@@ -10,7 +12,7 @@ import { MessageType } from './types/MessageType';
 
 export class ClientManager {
   private clients: Client[] = [];
-  private cache: string[] = [];
+  private cache: MailMessageModel[] = [];
   authenticate: (request: AuthenticationRequestMessageModel) => boolean;
   authenticationMode: string = 'none';
   cacheSize: number = 0;
@@ -44,29 +46,27 @@ export class ClientManager {
       );
 
       if (client.authenticated && this.cache.length > 0) {
-        for (let raw of this.cache) {
-          client.send(
-            JSON.stringify({
-              type: MessageType.MAIL,
-              raw,
-            } as MailMessageModel)
-          );
+        for (let mail of this.cache) {
+          client.send(JSON.stringify(mail));
         }
       }
     }
   }
 
   addMail(raw: string) {
-    this.broadcast({
+    const mail = {
+      messageId: uuid(),
       type: MessageType.MAIL,
       raw,
-    } as MailMessageModel);
+    } as MailMessageModel;
+
+    this.broadcast(mail);
 
     if (this.cacheSize <= 0) {
       return;
     }
 
-    this.cache.push(raw);
+    this.cache.push(mail);
 
     if (this.cache.length > this.cacheSize) {
       this.cache.shift();
