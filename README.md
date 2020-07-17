@@ -4,6 +4,12 @@ WebSockets server for [catchmail-web](https://github.com/mat-sz/catchmail-web).
 
 More details about the project are available in the [catchmail-web](https://github.com/mat-sz/catchmail-web) repository.
 
+**Check other TypeScript e-mail projects:**
+
+| Rendering (React.js)                                   | Rendering (Vue.js)                                 | Parser                                                 | Inbound SMTP                                   |
+| ------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| [react-letter](https://github.com/mat-sz/react-letter) | [vue-letter](https://github.com/mat-sz/vue-letter) | [letterparser](https://github.com/mat-sz/letterparser) | [microMTA](https://github.com/mat-sz/microMTA) |
+
 ## Installation
 
 Run `yarn install`, `yarn build` and then simply run `yarn start`. For development you can also run catchmail-ws with live reload, `yarn dev`. A permission to use port 25 is required (running as superuser is not recommended though, an alternative is to use Docker or authbind/setcap).
